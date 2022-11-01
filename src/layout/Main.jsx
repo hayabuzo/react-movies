@@ -3,7 +3,7 @@ import {Search} from '../components/Search';
 
 export function Main(props) {
   return <main className="container content">
-    <Search sfunc={props.sfunc}/>
+    <Search sfunc={props.sfunc} res={props.res}/>
     { props.loading
     ? 
     <div className="progress pink lighten-5">

@@ -22,10 +22,23 @@ nav {
   gap: 1rem;
 }
 
-.search-btn {
+.search-btn  {
   position: absolute;
   top: 0;
   right: 0.5rem;
+}
+
+.next {
+  float: right;
+  margin-right: 1rem;
+}
+
+.res:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.results {
+  margin-right: 3rem;
 }
 
 label:not(:last-child) {

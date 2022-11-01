@@ -13,20 +13,21 @@ class App extends React.Component {
     this.state = {
       movList: [],
       loading: true,
+      results: 0,
     }
   }
 
   componentDidMount() {
     fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=best`)
     .then(response => response.json())
-    .then(data => this.setState({movList: data.Search, loading: false}))
+    .then(data => this.setState({movList: data.Search, loading: false, results: data.totalResults}))
   }
 
-  doSearch = (str, type = 'all') => {
+  doSearch = (str, type = 'all', page = 1) => {
     this.setState({loading: true});
-    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type==='all' ? '' : `&type=${type}` }`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}&page=${page}${type==='all' ? '' : `&type=${type}` }`)
     .then(response => response.json())
-    .then(data => this.setState({movList: data.Search, loading: false}))
+    .then(data => this.setState({movList: data.Search, loading: false, results: data.totalResults}))
   }
   
   render() {
@@ -37,6 +38,7 @@ class App extends React.Component {
           list={this.state.movList}
           sfunc={this.doSearch}
           loading={this.state.loading}
+          res={this.state.results}
         />
         <Footer/>
       </>
